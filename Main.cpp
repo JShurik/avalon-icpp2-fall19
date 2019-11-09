@@ -1,154 +1,113 @@
 #include <iostream>
-#include <string>
 #include "Ex.hpp"
+#include <string>
 
-using namespace ext;
 using namespace std;
+using namespace ext;
 
-////int findMax(int a[], int size)
-////{
-////	int max = 0;
-////	for (int i = 0; i < size; i++)
-////	{
-////		if (a[i] > max)
-////		{
-////			max = a[i];
-////		}
-////	}
-////}
-//
-////int findModa(int a[], int size)
-////{
-////	for (int i = 0; i < size; ++i)
-////	{
-////		int current = a[i];
-////		int count = 1;
-////		for (int j = 0; j < size; ++j)
-////		{
-////
-////		}
-////	}
-////}
-//
-//void sortData(int data[], int size)
-//{
-//	for (int i = 0; i < size; i++)
-//	{
-//		for (int j = 0; j < size - 1; j++)
-//		{
-//			if (data[j] > data[j + 1])
-//			{
-//			int temp = data[j];
-//			data[j] = data[j + 1];
-//			data[j + 1] = temp;
-//			}		
-//		}
-//	}
-//}
-//
-//int findModasort(int data[], int size)
-//{
-//	int countMax = 1;
-//	int value = data[0];
-//	int count = 0;
-//	for (int i = 1; i, size; ++i)
-//	{
-//		if (data[i] == value)
-//		{
-//			++countMax;
-//		}
-//		else
-//		{
-//			value = data[i];
-//			if (count > countMax)
-//			{
-//				countMax = count;
-//				count = 1;
-//			}
-//		}
-//	}
-//
-//}
-//
-//int findModa()
-//{
-//
-//}
-//
-//void PrintData2d(int* a[], int sizeX, int sizeY)
-//{
-//	for (int i = 0; i < sizeY; ++i)
-//	{
-//		for (int j = 0; i < sizeX; ++i)
-//		{
-//			cout << a[i][j] << " ";
-//		}
-//		cout << endl;
-//	}
-//}
-//
-//int main()
-//{
-//	setlocale(LC_ALL, "rus");
-//	int a[2][3] = { {2,4,6}, {4,8,10} };
-//	
-//	int data[] = { 4,7,3,8,9,7,3,9,9,3,3,10 };
-//
-//
-//	sortData(data, sizeof(data) / sizeof(int));
-//
-//
-//	cout << findModasort(data, sizeof(data) / sizeof(int));
-//}
-
-int main()
+struct Student 
 {
-	struct Student
+	int ID;
+	int Grade;
+	string Name;
+};
+
+int main() {
+	//Задание #1
+	setlocale(LC_ALL, "rus");
+	Student band[100];
+	string dd;
+	int choose;
+	for (int i = 0; i < 100; i++) 
 	{
-		int Id;
-		int Grade;
-		string Name;
-	};
-	//Для всех задач данные следует генерировать с помощью библиотеки "Extention.hpp"
-	//	Задание #1
-	//	Напишите программу которая сортирует массив из структур Student. (N = 100)
-	//	struct Student
-	//Критерий сортировки необходимо спрашивать у пользователя. (по Id, по Grade, или по Name)
-	//	Id в диапазоне от 1 до 1000, Grade от 0 до 100, Name состоит от 3 до 6 английских символов;
-	Student abc[100];
-	for (int i = 0; i < 100; ++i)
-	{
-		abc[i].Grade = GetRandomValue(0, 100);
-	}
-	for (int i = 0; i < 100; ++i))
-	{
+		band[i].Grade = GetRandomValue(0, 100);
+		band[i].ID = GetRandomValue(1, 1000);
 		int length = GetRandomValue(3, 6);
-		abc[i].Name += GetRandomValue('A', 'Z');
-		for (int j = 1; j < length; ++j)
-		{
-			abc[i].Name += GetRandomValue('a', 'z');
+		char letter = GetRandomValue('A', 'Z');
+		dd += letter;
+		for (int j = 1; j < length; ++j) {
+			dd += GetRandomValue('a', 'z');
+		}
+		band[i].Name += dd;
+		dd = "";
+	}
+	cout << "В каком виде произвести сортировку? (Введите номер)" << endl;
+	cout << "1. ID" << endl;
+	cout << "2. Grade" << endl;
+	cout << "3. Name" << endl;
+	cin >> choose;
+	if (choose == 1) 
+	{
+		for (int j = 0; j < 100; j++) {
+			for (int k = 99; k > j; k--) {
+				if (band[k].ID < band[k - 1].ID) {
+					swap(band[k].ID, band[k - 1].ID);
+				}
+			}
 		}
 	}
-
-	string data[4];
-	for (int i = 0; i < 4; i++)
+	else if (choose == 2) 
 	{
-		int length = GetRandomValue(3, 6);
-		string current;		
-		current += GetRandomValue('A', 'Z');
-		for (int j = 1; j < length; ++j)
-		{
-			current += GetRandomValue('a', 'z');
+		for (int j = 0; j < 100; j++) {
+			for (int k = 99; k > j; k--) {
+				if (band[k].Grade < band[k - 1].Grade) {
+					swap(band[k].Grade, band[k - 1].Grade);
+				}
+			}
 		}
 	}
+	else if (choose == 3) 
+	{
+		for (int j = 0; j < 100; j++) {
+			for (int k = 99; k > j; k--) {
+				if (band[k].Name < band[k - 1].Name) {
+					swap(band[k].Name, band[k - 1].Name);
+				}
+			}
+		}
 
-
+	}
+	else
+	{
+		cout << "Введены некорректные данные" << endl;
+	}
+	for (int i = 0; i < 100; i++) {
+		cout << band[i].ID << " " << band[i].Grade << " " << band[i].Name << endl;
+	}
+	cout << endl;
 
 	//Задание #2
-	//	Напишите программу, которая анализирует массив студентов и определяет, какие оценки необходимо получить,
-	//	чтобы стать лучше 25 % студентов, 50 % студентов, 75 % студентов.
+	int Mark[100][5];
+	float Mid[100];
+	int sum, rand;
+	sum = 0; 
+	rand = 0;
+	for (int i = 0; i < 100; i++) {
+		for (int j = 0; j < 5; j++) {
+			rand = GetRandomValue(2, 5);
+			Mark[i][j] = rand;
+			sum += rand;
+		}
+		Mid[i] = static_cast<float>(sum) / 5;
+		sum = 0;
+	}
+	for (int j = 0; j < 100; j++) {
+		for (int k = 0; k < 99; k++) {
+			if (Mid[k] > Mid[k + 1]) {
+				swap(Mark[k], Mark[k + 1]);
+				swap(Mid[k], Mid[k + 1]);
+			}
+		}
+	}
+	cout << "Вам нужно получить следующие оценки, чтобы быть лучше 25% студентов: ";
+	for (int j = 0; j < 5; j++) cout << Mark[26][j] << " ";
+	cout << endl;
 
+	cout << "Вам нужно получить следующие оценки, чтобы быть лучше 50% студентов: ";
+	for (int j = 0; j < 5; j++) cout << Mark[51][j] << " ";
+	cout << endl;
 
-
-
+	cout << "Вам нужно получить следующие оценки, чтобы быть лучше 75% студентов: ";
+	for (int j = 0; j < 5; j++) cout << Mark[76][j] << " ";
+	cout << endl;
 }
