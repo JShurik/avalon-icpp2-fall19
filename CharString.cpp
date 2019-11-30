@@ -33,6 +33,19 @@ namespace ext
 
 	void removeChars(charString* str, int position, int num)
 	{
+		int count = 1;
+		while (count != position - 1)
+		{
+			str = str->nextSymbol;
+			++count;
+		}
+	
+		for (int i = 0; i < num; ++i)
+		{
+			delete[] str;
+			charString* temp = str->nextSymbol;
+			temp = str->nextSymbol;
 
+		}
 	}
 }

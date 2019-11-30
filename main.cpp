@@ -11,10 +11,13 @@ int main()
 	charString* s3 = new charString{ 'l' };
 
 	charString* ptr = nullptr;
+
 	ptr = s1;
 	s1->nextSymbol = s2;
 	s2->nextSymbol = s3;
 
 	append(ptr, 'l');
+	print(ptr);
+	removeChars(ptr, 2, 1);
 	print(ptr);
 }
