@@ -22,13 +22,13 @@ namespace ext
 		int Quantity;
 	};
 
-	void swap(Book& book1, Book& book2)
-	{
-		Book temp;
-		temp = book2;
-		book2 = book1;
-		book1 = temp;
-	}
+	//void swap(Book* book1, Book* book2)
+	//{
+	//	Book *temp;
+	//	temp = book2;
+	//	book2 = book1;
+	//	book1 = temp;
+	//}
 
 	void FindBook() 
 	{
@@ -40,6 +40,7 @@ namespace ext
 		Book* book = new Book[count];
 		fin.read(reinterpret_cast<char*>(book), sizeof(Book) * count);
 		fin.close();
+
 		string title;
 		cout << "Enter the book name: ";
 		cin >> title;
@@ -67,6 +68,7 @@ namespace ext
 			cout << "Quantity: " << ptr->Quantity << endl;
 		}
 	}
+
 
 }
 
